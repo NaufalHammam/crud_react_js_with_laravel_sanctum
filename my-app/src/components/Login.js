@@ -19,11 +19,12 @@ export default function Login() {
         }).then(response => {
             // handle success
             // console.log(response)
+            localStorage.setItem('user', response.data.user);
             localStorage.setItem('token_type', response.data.token_type);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('expired_at', response.data.expired_at);
 
-            var alert_var = "Token type: " + response.data.token_type + "\n" + "Token: " + response.data.token + "\n" + "Expired at: " + response.data.expired_at;
+            var alert_var = "Name: " + response.data.user + "\n" + "Token type: " + response.data.token_type + "\n" + "Token: " + response.data.token + "\n" + "Expired at: " + response.data.expired_at;
             alert(alert_var)
 
             window.location.href = "/"
@@ -35,24 +36,29 @@ export default function Login() {
         });
     }
 
-    return (
-        <div>
-            <Form className="create-form" onSubmit={handleSubmit}>
-                <Form.Field>
-                    <label>Email</label>
-                    <input placeholder="Email..." autoFocus type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </Form.Field>
+    if(localStorage.getItem("token") != null){
+        window.location.href = "/"
+    }else{
+        return (
+            <div>
+                <Form className="create-form" onSubmit={handleSubmit}>
+                    <Form.Field>
+                        <label>Email</label>
+                        <input placeholder="Email..." autoFocus type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </Form.Field>
 
-                <Form.Field>
-                    <label>Password</label>
-                    <input placeholder="Password..." type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <input placeholder="Password..." type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </Form.Field>
 
-                <Button type='submit' disabled={!validateForm()}>Login</Button>
-                <Link to='/'>
-                    <Button>Cancel</Button>
-                </Link>
-            </Form>
-        </div>
-    );
+                    <Button type='submit' disabled={!validateForm()}>Login</Button>
+                    <Link to='/'>
+                        <Button>Cancel</Button>
+                    </Link>
+                </Form>
+            </div>
+        );
+    }
+    
 }

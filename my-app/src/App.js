@@ -3,6 +3,7 @@ import Create from './components/Create';
 import Read_data from './components/Read_data';
 import Update from './components/Update';
 import Login from './components/Login';
+import Register from './components/Register';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 
@@ -25,6 +26,7 @@ if(localStorage.getItem("token") == null){
             <Route exact path='/read' element={<Read_data/>} />
             <Route exact path='/update' element={<Update/>} />
             <Route exact path='/login' element={<Login/>} />
+            <Route exact path='/register' element={<Register/>} />
           </Routes>
         </div>
       </div>
@@ -34,6 +36,7 @@ if(localStorage.getItem("token") == null){
   var return_variable = (
     <Router>
       <div className="main">
+        <label><b>Name:</b> {localStorage.getItem("user")}</label> <br></br>
         <label><b>Token type:</b> {localStorage.getItem("token_type")}</label> <br></br>
         <label><b>Token:</b> {localStorage.getItem("token")}</label> <br></br>
         <label><b>Expired at:</b> {localStorage.getItem("expired_at")}</label> <br></br>
@@ -45,6 +48,7 @@ if(localStorage.getItem("token") == null){
             <Route exact path='/read' element={<Read_data/>} />
             <Route exact path='/update' element={<Update/>} />
             <Route exact path='/login' element={<Login/>} />
+            <Route exact path='/register' element={<Register/>} />
           </Routes>
         </div>
       </div>

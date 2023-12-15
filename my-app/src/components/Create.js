@@ -19,10 +19,10 @@ export default function Create() {
             })
             .then((res) => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
 
                 const token_action = data.token;
-                console.log(token_action)
+                // console.log(token_action)
                 const data_send = {
                     token_action: token_action, 
                     name: name,
@@ -41,7 +41,7 @@ export default function Create() {
                 fetch('http://127.0.0.1:8000/api/products/create', options)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data)
+                    // console.log(data)
 
                     alert(data.message);
                     window.location.href = "/read"
